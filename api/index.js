@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const PORT = 3000;
+const serverless = require("serverless-http"); // para Vercel
 
 const students = {
     1: {
@@ -30,6 +30,5 @@ app.get('/user-info/:id', (req, res) => {
 });
 
 // Iniciar el servidor
-app.listen(PORT, () => {
-    console.log(`Servidor corriendo en http://localhost:${PORT}`);
-});
+module.exports = app;
+module.exports.handler = serverless(app); // para Vercel
